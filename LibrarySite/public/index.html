@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles/index.css">
+    <link rel="stylesheet" href="styles/general.css">
+    <link href="https://fonts.googleapis.com/css2?family=Marck+Script&display=swap" rel="stylesheet">
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <title>Inked ‒ Головна</title>
+</head>
+<body>
+
+    <header>
+    <a href="index.html" class="logo">INKED</a>
+    
+    <div id="react-search-root"></div>
+    
+    <details>
+        <summary data-key="menu_title">Menu</summary>
+        <nav>
+            <a href="catalog.html" data-key="nav_catalog">Catalog</a><br>
+            <a href="minigames.html" data-key="nav_minigames">Minigames</a><br>
+            <a href="profile.html" data-key="nav_profile">Profile</a>
+            <div class="lang-switch">
+                <button onclick="changeLanguage('uk')">UA</button>
+                <button onclick="changeLanguage('en')">EN</button>
+            </div>
+        </nav>
+    </details>
+</header>
+
+<main>
+    <section class="intro">
+        <section class="hero-section">
+            <video class="hero-video" autoplay loop muted>
+                <source src="video/cover.mp4" type="video/mp4">
+                <span data-key="video_error">Ваш браузер не підтримує відео.</span>
+            </video>
+            <div class="hero-content">
+                <h1 data-key="hero_title">Your personal</h1>
+                <h2 data-key="hero_subtitle" class="hero_subtitle">library</h2>
+            </div>
+        </section>
+        </section>
+            
+            <div class="carousel-wrapper">
+                <img id="prev-img" class="side-img" onclick="prevSlide()" alt="Попередня">
+
+                <img id="main-img" class="main-img" alt="Поточна книга">
+
+                <img id="next-img" class="side-img" onclick="nextSlide()" alt="Наступна">
+            </div>
+        </section>
+
+    <section class="gallery">
+        <h3 data-key="gallery_title">What can Inked offer?</h3>
+        
+        <div class="top-images">
+            <figure>
+                <img src="images/image4.jpg" width="200" height="200" alt="Image 1">
+                <figcaption data-key="feat_1_title">Track your reading progress</figcaption>
+                <figcaption2 data-key="feat_1_desc">with bookmarks.</figcaption2>
+            </figure>
+            <figure>
+                <img src="images/image3.jpg" width="200" height="250" alt="Image 3">
+                <figcaption data-key="feat_2_title">Make notes and comment your and other public documents</figcaption>
+                <figcaption2 data-key="feat_2_desc">you can write comments bellow every page!</figcaption2>
+            </figure>
+        </div>
+        
+        <div class="bottom-image">
+            <figure>
+                <img src="images/image5.jpg" width="400" height="160" alt="Image 2">
+                <figcaption data-key="feat_3_title">Read anytime, anywhere</figcaption>
+                <figcaption2 data-key="feat_3_desc">just with a few clicks.</figcaption2>
+            </figure>
+        </div>
+    </section>
+
+<section class="auth-section">
+    <div class="auth-toggle">
+        <button id="show-register" class="active" data-key="auth_reg_tab">Реєстрація</button>
+        <button id="show-login" data-key="auth_login_tab">Вхід</button>
+    </div>
+    
+    <div class="guest-view">
+        <form id="auth-form">
+            <div id="username-group">
+                <label for="username" data-key="label_name">Ім'я:</label>
+                <input type="text" id="username" name="username">
+            </div>
+            
+            <label for="email" data-key="label_email">Email:</label>
+            <input type="email" id="email" name="email" required>
+            
+            <label for="password" data-key="label_password">Пароль:</label>
+            <input type="password" id="password" name="password" required>
+            
+            <button type="submit" id="auth-submit">Зареєструватися</button>
+        </form>
+    </div>
+</section>
+</main>
+<script src="scripts/main.js"></script>
+<script src="scripts/search.js"></script>
+<script src="scripts/auth.js"></script>
+<script type="text/babel" src="scripts/search2.js"></script>
+</body>
+</html>

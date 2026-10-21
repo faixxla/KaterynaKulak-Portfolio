@@ -1,0 +1,542 @@
+/* 1. Імпорт шрифтів */
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500&family=EB+Garamond:wght@400;700&family=Playfair+Display:ital,wght@0,700;0,800;1,700&display=swap');
+
+* { 
+    box-sizing: border-box; 
+    transition: all 0.3s ease;
+}
+
+body {
+    background-color: #e5e5da; 
+    margin: 0;
+    font-family: 'EB Garamond', serif;
+    color: #1a1a1a;
+    line-height: 1.6;
+}
+
+header {
+    background-color: rgba(206, 209, 193, 0.95); 
+    backdrop-filter: blur(5px); 
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 60px;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    border-bottom: 1px solid rgba(0,0,0,0.1);
+}
+
+.logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 38px;
+    font-weight: 800;
+    text-decoration: none;
+    color: #000;
+    letter-spacing: -1.5px;
+}
+
+.search-bar {
+    background-color: #000;
+    border-radius: 50px;
+    padding: 4px 4px 4px 20px;
+    display: flex;
+    align-items: center;
+    width: 450px;
+    border: 1px solid transparent;
+}
+
+.search-bar:focus-within {
+    border-color: #d5bfc1;
+    box-shadow: 0 0 15px rgba(213, 191, 193, 0.3);
+}
+
+.search-bar input {
+    background: transparent;
+    border: none !important;
+    color: #d5bfc1;
+    flex-grow: 1;
+    outline: none;
+    font-family: 'EB Garamond', serif;
+    font-size: 16px;
+}
+
+.search-bar button {
+    background-color: #d5bfc1;
+    border: none;
+    border-radius: 40px;
+    padding: 8px 22px;
+    cursor: pointer;
+    font-family: 'EB Garamond', serif;
+    font-weight: bold;
+    color: #000;
+}
+
+.search-bar button:hover {
+    background-color: #c4a8aa;
+    transform: scale(1.02);
+}
+
+/* Меню */
+header summary {
+    list-style: none;
+    background-color: #000;
+    color: #d5bfc1;
+    padding: 8px 25px;
+    border-radius: 30px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+header nav {
+    position: absolute;
+    right: 0;
+    top: 120%;
+    background: #000;
+    padding: 15px;
+    border-radius: 12px;
+    min-width: 150px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+}
+
+header nav a {
+    color: #d5bfc1;
+    text-decoration: none;
+    display: block;
+    padding: 8px 10px;
+    border-radius: 6px;
+}
+
+header nav a:hover {
+    background: rgba(213, 191, 193, 0.1);
+    color: #fff;
+}
+.lang-switch {
+    display: flex;
+    gap: 8px;
+    margin-top: 20px;
+    padding-top: 15px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1); /* Тонка лінія для розділення */
+}
+
+.lang-switch button {
+    background: transparent;
+    color: #fff;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    padding: 5px 12px;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: all 0.2s ease;
+    text-transform: uppercase;
+}
+
+/* Ефект при наведенні */
+.lang-switch button:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: #fff;
+}
+
+/* Стиль для активної мови (можна додавати цей клас через JS) */
+.lang-switch button.active {
+    background: #fff;
+    color: #000;
+    border-color: #fff;
+}
+
+/* 3. Головний контент */
+main {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 60px 20px;
+    text-align: center;
+}
+
+h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 72px;
+    font-weight: 700;
+    margin-bottom: 5px;
+    color: #000;
+}
+
+.hero_subtitle {
+  display: block;
+  font-family: 'Marck Script', cursive;
+  font-size: 70px;
+  color: #444;
+  margin-top: -35px;
+  font-weight: normal; 
+  font-style: italic; 
+  text-shadow: 1px 1px 2px rgba(0,0,0,0.15); 
+  letter-spacing: -1px; 
+}
+
+.intro p {
+    font-size: 20px;
+    font-style: italic;
+    color: #555;
+    margin-bottom: 40px;
+}
+.hero-section {
+    position: relative; /* Необхідно для абсолютного позиціонування внутрішніх елементів */
+    width: 100%;
+    height: 80vh; /* Висота секції (наприклад, 80% висоти вікна) */
+    overflow: hidden; /* Ховаємо все, що виходить за межі секції */
+    display: flex; /* Для центрування тексту поверх відео */
+    align-items: center;
+    justify-content: center;
+}
+
+.hero-video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -1;
+    mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0));
+    -webkit-mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0));
+}
+
+.hero-content {
+    text-align: center;
+    color: white;
+    z-index: 1;
+}
+
+.hero-content h1 {
+    font-size: 5vw;
+    margin: 0;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+
+.carousel-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    height: 500px;
+    perspective: 1000px;
+}
+
+.side-img {
+    height: 370px; /* Менші за основну */
+    width: 300px;
+    opacity: 0.4;
+    filter: grayscale(50%) blur(1px);
+    cursor: pointer;
+    transition: all 0.5s ease;
+    border-radius: 4px;
+    object-fit: cover;
+}
+
+.side-img:hover {
+    opacity: 0.7;
+}
+
+/* Стиль для головної обкладинки */
+.main-img {
+    height: 470px;
+    width: 400px;
+    z-index: 10;
+    border-radius: 6px;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.4);
+    transition: all 0.5s ease;
+    object-fit: cover;
+}
+
+/* 4. ГАЛЕРЕЯ (Зменшена за твоїм проханням) */
+.gallery {
+    margin-top: 10px;
+    border-top: 1px solid rgba(0,0,0,0.05);
+    padding-top: 50px;
+}
+
+.gallery h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 32px;
+    margin-bottom: 20px;
+}
+
+.top-images {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end; /* Вирівнювання по низу */
+    gap: 40px;
+    margin-bottom: 60px;
+}
+
+/* Зменшення зображень у галереї */
+.gallery figure img {
+    border-radius: 12px;
+    border: 1px solid rgba(0,0,0,0.1);
+    max-width: 220px; /* Зменшили основний розмір */
+    height: auto;
+}
+
+.bottom-image img {
+    max-width: 320px !important; /* Зменшили нижнє зображення */
+}
+
+figcaption {
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    margin-top: 15px;
+    font-size: 16px;
+}
+
+figcaption2 {
+    display: block;
+    font-style: italic;
+    font-size: 13px;
+    color: #777;
+    margin-top: 5px;
+}
+
+/* Контейнер для всього блоку */
+.auth-section {
+    background-color: #f4f4f4; /* Світло-сірий фон для контрасту */
+    padding: 40px;
+    border-radius: 20px;
+    margin: 60px auto;
+    max-width: 400px; /* Обмежуємо ширину всієї секції */
+    text-align: center;
+}
+
+/* Стилі для перемикача */
+.auth-toggle {
+    display: inline-flex; /* Щоб контейнер не розтягувався на всю ширину */
+    background: #e0e0e0;
+    border-radius: 12px;
+    padding: 5px;
+    margin-bottom: 30px;
+}
+
+.auth-toggle button {
+    background: transparent;
+    border: none;
+    padding: 10px 30px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 600;
+    border-radius: 8px;
+    transition: all 0.2s ease;
+    color: #555;
+}
+
+/* Активна кнопка в перемикачі */
+.auth-toggle button.active {
+    background: #fff;
+    color: #000;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+/* Форма */
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px; /* Більше простору між полями */
+    text-align: left;
+}
+
+/* Контейнер для імені, щоб він не ламав флекс-бокс */
+#username-group {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+label {
+    font-size: 14px;
+    font-weight: 600;
+    color: #333;
+    margin-left: 2px;
+}
+
+input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background: #fff;
+    box-sizing: border-box; /* Важливо, щоб падінги не роздували ширину */
+    font-size: 16px;
+}
+
+input:focus {
+    outline: none;
+    border-color: #000;
+}
+
+/* Головна кнопка відправки */
+#auth-submit {
+    background: #000;
+    color: #fff;
+    border: none;
+    padding: 15px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 600;
+    margin-top: 10px;
+    transition: background 0.3s;
+}
+
+#auth-submit:hover {
+    background: #333;
+}
+/* 6. Адаптивність (Responsive) */
+@media (max-width: 480px) {
+
+    /* 1. Враховуємо системні панелі браузера */
+    body {
+        min-height: 100dvh; /* Динамічна висота: враховує появу/зникнення адресного рядка */
+    }
+
+    /* 2. Компактна шапка (Header) */
+    header {
+        padding: 8px 15px; /* Мінімум відступів */
+        flex-wrap: wrap;   /* Дозволяємо елементам перестрибувати, якщо зовсім тісно */
+        justify-content: space-between;
+    }
+
+    .logo {
+        font-size: 24px;   /* Значно менше, щоб звільнити місце */
+        letter-spacing: -1px;
+    }
+
+    /* Пошук на мобілці робимо гнучким */
+    .search-bar {
+        width: 100%;       /* На дуже вузьких екранах пошук може стати під логотипом */
+        order: 3;          /* Переносимо його нижче лого і меню, якщо вони не влізають */
+        margin-top: 10px;
+        width: 100%;
+        padding: 4px 4px 4px 15px;
+    }
+
+    .search-bar button {
+        padding: 6px 15px;
+        font-size: 14px;
+    }
+
+    header summary {
+        padding: 6px 15px;
+        font-size: 14px;
+    }
+
+    /* 3. Головний заголовок та інтро */
+    main {
+        padding: 30px 15px;
+    }
+    .hero-section {
+    position: relative; /* Необхідно для абсолютного позиціонування внутрішніх елементів */
+    width: 100%;
+    height: 40vh; /* Висота секції (наприклад, 80% висоти вікна) */
+    overflow: hidden; /* Ховаємо все, що виходить за межі секції */
+    display: flex; /* Для центрування тексту поверх відео */
+    align-items: center;
+    justify-content: center;
+}
+    .hero-video {
+    position: absolute; /* Відео фіксується відносно .hero-section */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Відео розтягується, щоб заповнити всю площу, зберігаючи пропорції */
+    z-index: -1; /* Розміщуємо відео на нижньому шарі */
+    
+    /* Вертикальний градієнт прозорості */
+    mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0));
+    -webkit-mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0)); /* Для сумісності з Safari/Chrome */
+}
+
+    h1 {
+        font-size: 38px;   /* Було 72px — на мобілці це б зайняло весь екран */
+        line-height: 1.1;
+    }
+
+    .intro h1::after {
+        font-size: 28px;   /* Рукописний текст теж зменшуємо */
+        margin-top: -10px;
+    }
+
+    .intro p {
+        font-size: 16px;
+        margin-bottom: 25px;
+    }
+
+    /* 4. Карусель обкладинок */
+    .carousel-wrapper img {
+        height: 240px;
+    }
+    .side-img {
+        height: 150px; /* Менші за основну */
+        width: 80px;
+        opacity: 0.4;
+        filter: grayscale(50%) blur(1px);
+        cursor: pointer;
+        transition: all 0.5s ease;
+        border-radius: 4px;
+        object-fit: cover;
+    }
+
+    .side-img:hover {
+        opacity: 0.7;
+        transform: scale(1.05);
+    }
+
+    /* Стиль для головної обкладинки */
+    .main-img {
+        height: 240px;
+        width: 180px;
+        z-index: 10;
+        border-radius: 6px;
+        box-shadow: 0 15px 35px rgba(0,0,0,0.4);
+        transition: all 0.5s ease;
+        object-fit: cover;
+    }
+
+    .main-img:hover {
+        transform: translateY(-10px) scale(1.05, 1.05);
+    }
+
+    /* 5. ГАЛЕРЕЯ (Важливо: перетворюємо на одну колонку) */
+    .top-images {
+        flex-direction: column; /* Картинки тепер одна під одною */
+        gap: 30px;
+        align-items: center;
+    }
+
+    .gallery figure img {
+        max-width: 100%;    /* Картинка займає всю ширину телефону мінус відступи */
+        height: auto;
+    }
+
+    .bottom-image img {
+        max-width: 100% !important;
+        margin-top: 20px;
+    }
+
+    /* 6. Форма реєстрації */
+    .auth-section {
+        padding: 30px 20px;
+        margin-top: 40px;
+        border-radius: 20px;
+    }
+
+    form {
+        max-width: 100%;
+        padding: 15px;
+    }
+
+    /* Додаємо відступ знизу, щоб "системна смужка" не перекривала контент */
+    footer {
+        padding-bottom: env(safe-area-inset-bottom, 20px);
+    }
+}

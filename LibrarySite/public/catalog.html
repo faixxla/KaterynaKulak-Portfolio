@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inked ‒ Catalog</title>
+    <link rel="stylesheet" href="styles/catalog.css">
+    <link rel="stylesheet" href="styles/general.css">
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+<body>
+
+    <header>
+        <a href="index.html" class="logo">INKED</a>
+        
+        <div id="react-search-root"></div>
+        
+        <details>
+            <summary data-key="menu_title">Menu</summary>
+            <nav>
+                <a href="catalog.html" data-key="nav_catalog">Catalog</a><br>
+                <a href="minigames.html" data-key="nav_minigames">Minigames</a><br>
+                <a href="profile.html" data-key="nav_profile">Profile</a>
+            </nav>
+        </details>
+    </header>
+
+    <div class="layout-wrapper">
+        <input type="checkbox" id="sidebar-toggle" hidden>
+        <label for="sidebar-toggle" class="mobile-filter-btn">Filters & Categories</label>
+        <aside class="sidebar">
+            <h2>Catalog</h2>
+            <hr>
+            
+            <button id="random-btn">Get one random book</button>
+            
+            <div class="categories">
+    <h3>Categories</h3>
+    <nav>
+        <ul>
+            <li><a href="?cat=fiction">Fiction</a></li>
+            <li><a href="?cat=nonfiction">Nonfiction</a></li>
+            <li><a href="?cat=history">History</a></li>
+            <li><a href="?cat=language">Language learning</a></li>
+            <li><a href="?cat=self-dev">Self-development</a></li>
+            <li><a href="?cat=art">Art</a></li>
+            <li><a href="?cat=fanfic">Your fanfiction</a></li>
+        </ul>
+    </nav>
+</div>
+        </aside>
+
+        <main class="catalog-content">
+            <table id="books-table">
+                <tbody>
+                    
+                </tbody>
+            </table>
+        </main>
+    </div>
+    <div class="glitch-wrapper">
+        <button id="glitch-trigger" class="glitch-btn" data-text="ERROR_404">ERROR_404</button>
+    </div>
+    <div id="blackout"></div>
+<script src="scripts/catalog.js"></script>
+<script src="scripts/search.js"></script>
+<script type="text/babel" src="scripts/search2.js"></script>
+</body>
+</html>

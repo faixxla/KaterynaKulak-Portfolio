@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inked ‒ Minigames</title>
+    <link rel="stylesheet" href="styles/minigames.css">
+    <link rel="stylesheet" href="styles/general.css">
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+<body>
+
+        <header>
+        <a href="index.html" class="logo">INKED</a>
+        
+        <div id="react-search-root"></div>
+        
+        <details>
+            <summary data-key="menu_title">Menu</summary>
+            <nav>
+                <a href="catalog.html" data-key="nav_catalog">Catalog</a><br>
+                <a href="minigames.html" data-key="nav_minigames">Minigames</a><br>
+                <a href="profile.html" data-key="nav_profile">Profile</a>
+            </nav>
+        </details>
+    </header>
+
+    <main class="profile-container">
+        <section class="minigames-header">
+            <h1>Minigames</h1>
+            <p>Here you can find fun and engaging minigames related to your reading experience. Challenge yourself and enhance your literary skills!</p>
+         </section>
+
+         <section class="minigames-list">
+             <div class="minigame-item">
+                 <h2>Bibliomancy</h2>
+                 <p>Have some questions? Inked can help you find the answers!</p>
+                 <img src="images/magic-book.png" width="150" alt="Bibliomancy Game" class="minigame-image">
+                 <button type="button" class="button" onclick="openBibliomancy()">Play Now</button>
+             </div>
+
+             <div class="minigame-item">
+                 <h2>Ink Catcher</h2>
+                 <p>OH! Ink is flowing! Catch it before it spills!</p>
+                 <img src="images/ink.png" alt="Ink Catcher Game" class="minigame-image">
+                 <button type="button" class="button" onclick="openCatcher()">Play Now</button>
+             </div>
+
+             <div class="minigame-item">
+                 <h2>Memory Game</h2>
+                 <p>Try to match pairs of cards!</p>
+                 <img src="images/memory_game.jpg" alt="Memory Game" class="minigame-image">
+                 <button type="button" class="button" onclick="openMemoryGame()">Play Now</button>
+             </div>
+             
+             <div class="minigame-item">
+                 <h2>Guess The Character</h2>
+                 <p>Try to guess the characters from different books based on their traits, actions, or quotes. See how well you know your favorite literary characters!</p>
+                 <img src="images/character_match.jpg" alt="Character Match Game" class="minigame-image">
+                 <button type="button" class="button" onclick="openCharacterMatch()">Play Now</button>
+             </div>
+             <div class="minigame-item">
+                 <h2>Quest</h2>
+                 <p>investigate your old dusty room</p>
+                 <img src="images/character_match.jpg" alt="Character Match Game" class="minigame-image">
+                 <button type="button" class="button" onclick="window.location.href='quest2.html'">Play Now</button>
+             </div>
+         </section>
+        <div id="game-modal" class="modal">
+            <div class="modal-content">
+                <span class="close-btn" onclick="closeGame()">&times;</span>
+                <h2 style="font-family: 'Playfair Display', serif;">The Oracle of Ink</h2>
+                <p>Ask a question and touch the sacred book...</p>
+                
+                <input type="text" id="user-question" placeholder="Your question here...">
+                
+                <div class="book-box" onclick="getPrediction()">
+                    <img src="images/magic-book.png" id="magic-book" alt="Click me" style="width: 120px; cursor: pointer;">
+                </div>
+                
+                <div id="prediction-result" class="ink-text"></div>
+            </div>
+        </div>
+        <div id="catcher-modal" class="modal">
+            <div class="modal-content game-canvas-content">
+                <span class="close-btn" onclick="closeCatcher()">&times;</span>
+                <h2 style="font-family: 'Playfair Display', serif;">Ink Catcher</h2>
+                <p>Score: <span id="score-val">0</span> | Missed: <span id="missed-val">0</span></p>
+                
+                <canvas id="inkCanvas"></canvas>
+                
+                <p class="game-hint">Move your mouse or slide your finger to catch the drops!</p>
+            </div>
+        </div>
+        <div id="memory-modal" class="modal">
+            <div class="modal-content memory-game-content">
+                <span class="close-btn" onclick="closeMemoryGame()">&times;</span>
+                <h2 style="font-family: 'Playfair Display', serif;">Library Memory</h2>
+                <p>Find all pairs of matching covers!</p>
+                
+                <div id="game-grid" class="memory-game-grid"></div>
+                
+                <button class="reset-btn" onclick="resetMemoryGame()">Restart Game</button>
+            </div>
+        </div>
+        <div id="character-modal" class="modal">
+            <div class="modal-content">
+                <span class="close-btn" onclick="closeCharacterMatch()">&times;</span>
+                <h2 style="font-family: 'Playfair Display', serif;">Who said that?</h2>
+                
+                <div id="quiz-box">
+                    <div id="question-text" class="quote-display">"Loading mysterious words..."</div>
+                    <div id="options-box" class="options-grid">
+                        </div>
+                    <p class="quiz-progress">Question <span id="current-q">1</span> of 5</p>
+                </div>
+
+                <div id="quiz-results" style="display:none;">
+                    <p id="final-result-text"></p>
+                    <button class="reset-btn" onclick="startQuiz()">Try Again</button>
+                </div>
+            </div>
+        </div>
+        <script src="scripts/games.js"></script>
+        <script src="scripts/search.js"></script>
+        <script type="text/babel" src="scripts/search2.js"></script>
+    </body>
+</html>

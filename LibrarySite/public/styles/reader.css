@@ -1,0 +1,407 @@
+/* 1. Загальні налаштування */
+@import url('https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;700&display=swap');
+* { box-sizing: border-box; }
+body {
+    background-color: #fdfdfd;
+    margin: 0;
+    font-family: 'EB Garamond', serif;
+    color: #1a1a1a;
+}
+
+/* 2. Шапка (Header) */
+header {
+    background-color: #ced1c1; /* Оливково-сірий фон з макету */
+    padding: 20px 40px;
+    border-bottom: 1px solid rgba(0,0,0,0.1);
+}
+
+header h1 {
+    margin: 0;
+    font-size: 32px;
+    font-weight: 400;
+}
+
+.author {
+    margin: 5px 0 0 0;
+    color: #4a6fa5; /* Синій колір автора */
+    font-size: 16px;
+}
+
+.read-btn { /* Кнопка Back */
+    float: right;
+    background: #000;
+    color: #d5bfc1;
+    border: none;
+    padding: 8px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/* 3. Основний контейнер (Layout) */
+#reader-container {
+    
+    display: flex;
+    min-height: calc(100vh - 120px);
+}
+
+/* Ліва частина - Сторінка книги */
+.book-page {
+    justify-content: center;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 40px;
+    background-color: #fff;
+}
+
+.comment-item {
+    margin-bottom: 15px;
+    padding: 5px 0;
+}
+
+.comment-meta {
+    display: flex;
+    justify-content: space-between; /* Розносить нік вліво, а дату вправо */
+    align-items: center;
+    margin-bottom: 4px;
+}
+
+.comment-date {
+    font-size: 0.75rem;
+    color: #888; /* Робимо дату сіренькою і непомітною */
+    font-family: 'Arial', sans-serif;
+}
+
+.comment-text {
+    margin: 0;
+    font-size: 0.9rem;
+    line-height: 1.4;
+}
+#viewer {
+    width: 90%; 
+    max-width: 800px; /* Це ідеальна ширина для читання, щоб очі не втомлювалися */
+    height: 70vh; /* 70% висоти екрана */
+    margin: 20px auto; /* Центруємо читалку */
+    background: #fdfaf3; /* Легкий паперовий відтінок, дуже по-готичному */
+    border: 1px solid #2c2c2c;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    overflow: hidden; /* Щоб нічого не вилазило за межі */
+    position: relative;
+}
+
+/* Оскільки epub.js створює всередині iframe, нам треба, щоб він слухався */
+#viewer iframe {
+    border: none !important;
+}
+header {
+    background-color: #ced1c1;
+    padding: 15px 40px; /* Трохи менший падінг зверху, щоб було компактніше */
+    display: flex;
+    justify-content: space-between; /* Назва зліва, кнопки справа */
+    align-items: center; /* Це вирівняє їх по одному рівню по висоті */
+    border-bottom: 1px solid rgba(0,0,0,0.1);
+}
+
+.header-info h1 {
+    margin: 0;
+    font-size: 32px;
+}
+
+.header-info .author {
+    margin: 0; /* Прибираємо зайві відступи, щоб не розтягувати хедер */
+}
+
+.header-controls {
+    display: flex;
+    align-items: center;
+    gap: 15px; /* Відстань між таймером і кнопкою */
+}
+
+.timer {
+    font-family: monospace;
+    font-size: 18px;
+    color: #4a6fa5;
+    background: rgba(255, 255, 255, 0.4);
+    padding: 5px 12px;
+    border-radius: 4px;
+    border: 1px solid rgba(0,0,0,0.05);
+}
+
+.read-btn {
+    /* Видали звідси float: right, якщо він залишився */
+    background: #000;
+    color: #d5bfc1;
+    border: none;
+    padding: 8px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.page-view {
+    width: 100%;
+    overflow: auto; /* Дозволяє скролити, коли картинка велика */
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+}
+
+.page-view img {
+    max-width: none !important; /* Дозволяємо картинці бути ширшою за контейнер */
+    height: auto; /* Зберігаємо пропорції */
+    transition: width 0.1s ease-out; /* Робимо зум трохи плавнішим */
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+
+/* 4. Навігація внизу книги (Чорна панель) */
+.reader-nav {
+    margin-top: 30px;
+    background-color: #000;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 400px;
+    height: 45px;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.reader-nav a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 24px;
+    width: 33%;
+    text-align: center;
+}
+
+.bookmark-btn {
+    background-color: #d5bfc1; /* Рожевий фон для закладки */
+    border: none;
+    height: 100%;
+    width: 50px;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+/* 5. Сайдбар коментарів */
+.comments-sidebar {
+    width: 350px;
+    background-color: #ecece9; /* Світло-сірий фон сайдбару */
+    border-left: 1px solid #ddd;
+    padding: 20px;
+    position: relative;
+}
+
+.sidebar-header {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 30px;
+}
+
+/* Кнопка закриття (чорне коло) */
+.toggle-btn {
+    background: #000;
+    color: #fff;
+    border: none;
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    position: absolute;
+    left: -17px; /* Наповзає на межу */
+}
+
+.sidebar-header h3 {
+    margin: 0;
+    flex-grow: 1;
+    font-weight: 400;
+    color: #555;
+}
+
+.add-btn {
+    background: #000;
+    color: #fff;
+    border: none;
+    width: 30px;
+    height: 30px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 20px;
+}
+
+/* Список коментарів */
+.reviews-list {
+    list-style: none;
+    padding: 0;
+}
+
+.reviews-list li {
+    background-color: #e0e0e0; /* Сірі блоки з макету */
+    padding: 20px;
+    margin-bottom: 15px;
+    border-radius: 4px;
+    min-height: 50px;
+}
+
+/* 6. Статистика та Аудіо */
+.stats-table {
+    width: 100%;
+    margin-top: 20px;
+    font-size: 14px;
+    color: #666;
+}
+
+.audio-feature {
+    background-color: #f5f5f3;
+    padding: 20px 40px;
+    border-top: 1px solid #ddd;
+}
+.zoom-control {
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(0,0,0,0.1);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.zoom-control label {
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* Кастомізація повзунка */
+input[type=range] {
+    -webkit-appearance: none;
+    width: 100%;
+    background: transparent;
+}
+
+input[type=range]::-webkit-slider-runnable-track {
+    width: 100%;
+    height: 4px;
+    background: #000;
+    border-radius: 2px;
+}
+
+input[type=range]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    height: 18px;
+    width: 18px;
+    border-radius: 50%;
+    background: #d5bfc1; /* Наш рожевий акцент */
+    cursor: pointer;
+    margin-top: -7px;
+    border: 2px solid #000;
+}
+@media (max-width: 1024px) {
+    main {
+        padding: 20px; /* Зменшуємо "повітря" по боках */
+    }
+    h1 {
+        font-size: 48px; /* Робимо заголовок трохи меншим */
+    }
+    .search-bar {
+        width: 80%; /* Пошук тепер займає більше місця по ширині */
+    }
+}
+@media (max-width: 480px) {
+    /* 1. Компактна шапка рідера */
+    header {
+        padding: 10px 20px;
+    }
+    .timer {
+        float: none;
+        display: inline-block;
+        margin-bottom: 10px;
+        font-size: 14px;
+    }
+
+    header h1 {
+        font-size: 22px;
+    }
+
+    .read-btn {
+        padding: 5px 15px;
+        font-size: 14px;
+    }
+
+    /* 2. Перебудовуємо контейнер у колонку */
+    #reader-container {
+        flex-direction: column;
+        height: auto;
+        overflow: visible;
+    }
+
+    /* 3. Сторінка книги - тепер головний акцент */
+    .book-page {
+        padding: 20px 10px;
+        min-height: 60vh;
+    }
+
+    .page-view img {
+        max-width: 100%;
+        max-height: none;
+        width: 100%;
+        height: auto;
+    }
+
+    /* 4. Чорна панель навігації на весь екран */
+    .reader-nav {
+        width: 100%;
+        max-width: 100%;
+        margin-top: 20px;
+        border-radius: 10px;
+        gap: 10px;
+    }
+
+    /* 5. Сайдбар коментарів - перетворюємо на нижню панель */
+    .comments-sidebar {
+        width: 100%;
+        border-left: none;
+        border-top: 2px solid #000;
+        margin-top: 40px;
+        padding: 20px 15px;
+    }
+
+    /* Ховаємо кнопку закриття, яка наповзала збоку */
+    .toggle-btn {
+        display: none;
+    }
+
+    .sidebar-header h3 {
+        font-size: 20px;
+    }
+
+    /* Коментарі робимо компактнішими */
+    .reviews-list li {
+        padding: 15px;
+        font-size: 14px;
+    }
+
+    /* 6. Повзунок масштабу (Zoom) */
+    .zoom-control {
+        padding: 15px;
+        background: rgba(0,0,0,0.05);
+        border-radius: 10px;
+    }
+
+    /* 7. Аудіо-фіча внизу */
+    .audio-feature {
+        padding: 15px;
+        flex-direction: column;
+        gap: 10px;
+        text-align: center;
+    }
+
+    audio {
+        width: 100%;
+    }
+}

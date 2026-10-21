@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <title>Квест</title>
+    <style>
+        body {
+            margin: 0;
+            background: #000;
+            color: #f0e6d2;
+            font-family: sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        #game-viewport {
+            position: relative;
+            cursor: default;
+            max-width: 100%;
+        }
+
+        #room-image {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        #dialogue-box {
+            position: absolute;
+            bottom: 30px;
+            width: 70%;
+            left: 15%;
+            background: rgba(15, 12, 10, 0.95);
+            border: 2px solid #6b5331;
+            padding: 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            z-index: 10;
+        }
+
+        .overlay-screen {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #000;
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 20;
+        }
+
+        /* Окремо для телескопа, щоб він точно був зверху */
+        #telescope-screen {
+            z-index: 25;
+        }
+
+        #paintCanvas {
+            background-image: url('images/board.jpg');
+            background-size: cover;
+            background-position: center;
+            border: 5px solid #3e2b14;
+            box-shadow: inset 0 0 20px rgba(0,0,0,0.5);
+            cursor: crosshair;
+        }
+
+        button {
+            margin-top: 15px;
+            padding: 10px 20px;
+            cursor: pointer;
+            background: #6b5331;
+            color: white;
+            border: none;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+
+<div id="game-viewport">
+    <img src="images/room.jpg" usemap="#image-map" id="room-image">
+
+    <map name="image-map">
+        <area alt="telescope" coords="1074,280,1091,296,1287,116,1330,133,1335,155,1229,261,1281,359,1298,402,1266,423,1213,394,1309,623,1277,646,1219,623,1219,672,1226,693,1168,687,1177,619,1147,610,1121,664,1081,667,1176,434,1151,350,1109,354,1068,382,1023,353,1016,312" shape="poly" onclick="interact('telescope')">
+        <area alt="globe" coords="251,415,124" shape="circle" onclick="interact('globe')">
+        <area alt="board" coords="664,173,923,372" shape="rect" onclick="interact('board')">
+    </map>
+
+    <div id="dialogue-box" onclick="closeDialogue()">
+        <p id="dialogue-text">Нарешті вдома... Все припало товстим шаром пилу. Треба щось оглянути.</p>
+    </div>
+
+    <div id="board-screen" class="overlay-screen">
+        <h2>Твоя дошка для нотаток</h2>
+        <canvas id="paintCanvas" width="800" height="500"></canvas>
+        <button onclick="exitGame()">Повернутися в кімнату</button>
+    </div>
+
+    <div id="quiz-screen" class="overlay-screen">
+        <div id="quiz-container" style="text-align: center; max-width: 600px;">
+            <h2 id="quiz-question">Питання...</h2>
+            <div id="quiz-options" style="display: grid; gap: 10px; margin-bottom: 20px;"></div>
+            <p id="quiz-stats"></p>
+            <button onclick="exitGame()">Здатися і повернутися</button>
+        </div>
+    </div>
+
+    <div id="telescope-screen" class="overlay-screen" style="background: #050508; overflow: hidden;">
+        
+        <div id="telescope-ui" style="position: absolute; top: 20px; left: 20px; width: 280px; padding: 20px; background: rgba(10, 10, 15, 0.85); border: 1px solid #333; border-radius: 8px; z-index: 30; backdrop-filter: blur(5px);">
+            <h3 style="margin-top: 0;">Зоряний атлас</h3>
+            <p id="hint-text" style="font-size: 0.9rem;">Натисни на сузір'я в небі.</p>
+            
+            <div id="selection-form" style="display: none; margin-top: 15px;">
+                <p style="font-size: 0.85rem;">Обери назву:</p>
+                <select id="constellation-select" style="width: 100%; padding: 8px; background: #1a1a25; color: white; border: 1px solid #444; border-radius: 4px;">
+                    <option value="" disabled selected>...</option>
+                    <option value="Lyra">Ліра (Lyra)</option>
+                    <option value="Orion">Оріон (Orion)</option>
+                    <option value="UrsaMinor">Мала Ведмедиця (Ursa Minor)</option>
+                    <option value="Draco">Дракон (Draco)</option>
+                    <option value="UrsaMajor">Велика Ведмедиця (Ursa Major)</option>
+                    <option value="Booles">Волопас (Boötes)</option>
+                    <option value="Pegasus">Пегас (Pegasus)</option>
+                    <option value="Andromeda">Андромеда (Andromeda)</option>
+                    <option value="Cepheus">Цефей (Cepheus)</option>
+                    <option value="Auriga">Візничий (Auriga)</option>
+                    <option value="Cassiopeia">Кассіопея (Cassiopeia)</option>
+                    <option value="Cygnus">Лебідь (Cygnus)</option>
+                    <option value="Hercules">Геркулес (Hercules)</option>
+                    <option value="Perseus">Персей (Perseus)</option>
+                    <option value="Aguila">Орел (Aquila)</option>
+                </select>
+                <button onclick="checkConstellation()" style="width: 100%; margin-top: 10px; background: #2a2a40;">Перевірити</button>
+            </div>
+            
+            <p id="result-msg" style="margin-top: 15px; font-size: 0.9rem; min-height: 1.2em;"></p>
+            <button onclick="exitGame()" style="margin-top: 20px; background: #442222; width: 100%;">Назад у кімнату</button>
+        </div>
+
+        <div id="sky-container" style="width: 100%; height: 100%; display: flex; align-items: center; justify-content: center;">
+            <img src="images/telescope.png" usemap="#telescope-map" id="telescope-img" style="max-width: 100%; max-height: 100%; object-fit: contain;">
+            <map name="telescope-map" id="telescope-map">
+                <area alt="Lyra" coords="555,249,373,60" shape="rect" onclick="selectConst('Lyra')">
+                <area alt="Orion" coords="371,265,602,555" shape="rect" onclick="selectConst('Orion')">
+                <area alt="UrsaMinor" coords="379,588,552,795" shape="rect" onclick="selectConst('UrsaMinor')">
+                <area alt="Draco" coords="601,67,909,258" shape="rect" onclick="selectConst('Draco')">
+                <area alt="UrsaMajor" coords="626,317,926,469" shape="rect" onclick="selectConst('UrsaMajor')">
+                <area alt="Booles" coords="615,552,848,850" shape="rect" onclick="selectConst('Booles')">
+                <area alt="Pegasus" coords="1249,254,951,52" shape="rect" onclick="selectConst('Pegasus')">
+                <area alt="Andromeda" coords="969,298,1263,523" shape="rect" onclick="selectConst('Andromeda')">
+                <area alt="Cepheus" coords="879,589,1173,833" shape="rect" onclick="selectConst('Cepheus')">
+                <area alt="Auriga" coords="1275,57,1521,309" shape="rect" onclick="selectConst('Auriga')">
+                <area alt="Cassiopeia" coords="1306,330,1527,491" shape="rect" onclick="selectConst('Cassiopeia')">
+                <area alt="Cygnus" coords="1228,584,1485,827" shape="rect" onclick="selectConst('Cygnus')">
+                <area alt="Hercules" coords="1553,28,1812,283" shape="rect" onclick="selectConst('Hercules')">
+                <area alt="Perseus" coords="1561,308,1805,588" shape="rect" onclick="selectConst('Perseus')">
+                <area alt="Aguila" coords="1542,598,1805,833" shape="rect" onclick="selectConst('Aguila')">
+            </map>
+        </div>
+    </div>
+</div>
+
+<script>
+    const dBox = document.getElementById('dialogue-box');
+    const dText = document.getElementById('dialogue-text');
+    let currentQ = 0;
+    let score = 0;
+
+    const questions = [
+        { q: "У якій країні відбуваються події 'Трьох мушкетерів'?", a: ["Італія", "Франція", "Польща", "Іспанія"], correct: 1 },
+        { q: "Звідки родом автор 'Відьмака' Анджей Сапковський?", a: ["Україна", "Чехія", "Польща", "Німеччина"], correct: 2 },
+        { q: "Яке місто є домом для Шерлока Холмса?", a: ["Лондон", "Париж", "Нью-Йорк", "Едінбург"], correct: 0 }
+    ];
+
+    function interact(item) {
+        dBox.style.display = 'block';
+        if (item === 'telescope') {
+            dText.innerText = "Мій старий телескоп. Здається, він все ще наведений на зорі... Зазирнути?";
+            dBox.onclick = () => openTelescope();
+        } else if (item === 'globe') {
+            dText.innerText = "Глобус... Він пам'ятає кожну історію. Перевіримо твої знання?";
+            dBox.onclick = () => openGlobe();
+        } else if (item === 'board') {
+            dText.innerText = "Стара дошка. Тут я малювала свої перші скетчі. Може спробувати знову?";
+            dBox.onclick = () => openBoard();
+        }
+    }
+
+    function closeDialogue() {
+        dBox.style.display = 'none';
+        dBox.onclick = closeDialogue;
+    }
+
+    function exitGame() {
+        document.querySelectorAll('.overlay-screen').forEach(s => s.style.display = 'none');
+        closeDialogue();
+    }
+
+    function openBoard() {
+        closeDialogue();
+        document.getElementById('board-screen').style.display = 'flex';
+        initCanvas();
+    }
+
+    function initCanvas() {
+        const canvas = document.getElementById('paintCanvas');
+        const ctx = canvas.getContext('2d');
+        let painting = false;
+
+        function startPosition(e) { painting = true; draw(e); }
+        function finishedPosition() { painting = false; ctx.beginPath(); }
+        
+        function draw(e) {
+            if (!painting) return;
+            ctx.lineWidth = 3;
+            ctx.lineCap = 'round';
+            ctx.strokeStyle = 'rgba(255, 255, 255, 0.8)';
+
+            const rect = canvas.getBoundingClientRect();
+            ctx.lineTo(e.clientX - rect.left, e.clientY - rect.top);
+            ctx.stroke();
+            ctx.beginPath();
+            ctx.moveTo(e.clientX - rect.left, e.clientY - rect.top);
+        }
+
+        canvas.onmousedown = startPosition;
+        canvas.onmouseup = finishedPosition;
+        canvas.onmousemove = draw;
+    }
+
+    function openGlobe() {
+        closeDialogue();
+        currentQ = 0;
+        score = 0;
+        document.getElementById('quiz-screen').style.display = 'flex';
+        showQuestion();
+    }
+
+    function showQuestion() {
+        const qData = questions[currentQ];
+        document.getElementById('quiz-question').innerText = qData.q;
+        const optionsDiv = document.getElementById('quiz-options');
+        optionsDiv.innerHTML = '';
+
+        qData.a.forEach((ans, index) => {
+            const btn = document.createElement('button');
+            btn.innerText = ans;
+            btn.onclick = () => checkAnswer(index);
+            optionsDiv.appendChild(btn);
+        });
+        document.getElementById('quiz-stats').innerText = `Питання: ${currentQ + 1}/${questions.length}`;
+    }
+
+    function checkAnswer(index) {
+        if (index === questions[currentQ].correct) { score++; alert("Правильно!"); } 
+        else { alert("Ех, не вгадала..."); }
+
+        currentQ++;
+        if (currentQ < questions.length) { showQuestion(); } 
+        else { alert(`Квіз завершено! Результат: ${score}/${questions.length}`); exitGame(); }
+    }
+
+    let lastClickedConst = "";
+    let originalCoords = {};
+
+    function initTelescope() {
+        const map = document.getElementById('telescope-map');
+        const areas = map.getElementsByTagName('area');
+        for (let area of areas) {
+            originalCoords[area.alt] = area.coords.split(',').map(Number);
+        }
+        resizeMap();
+    }
+
+    function resizeMap() {
+        const img = document.getElementById('telescope-img');
+        const areas = document.getElementById('telescope-map').getElementsByTagName('area');
+        const scale = img.clientWidth / img.naturalWidth;
+        for (let area of areas) {
+            const coords = originalCoords[area.alt];
+            const scaledCoords = coords.map(c => Math.round(c * scale));
+            area.coords = scaledCoords.join(',');
+        }
+    }
+    window.onresize = resizeMap;
+
+    function openTelescope() {
+        closeDialogue();
+        document.getElementById('telescope-screen').style.display = 'flex';
+        document.getElementById('selection-form').style.display = 'none';
+        document.getElementById('result-msg').innerText = "";
+        if (Object.keys(originalCoords).length === 0) {
+            initTelescope();
+        } else {
+            resizeMap();
+        }
+    }
+
+    function selectConst(name) {
+        lastClickedConst = name;
+        document.getElementById('selection-form').style.display = 'block';
+        document.getElementById('result-msg').innerText = "Сузір'я обрано. Тепер вибери назву зі списку.";
+        document.getElementById('constellation-select').value = "";
+    }
+
+    function checkConstellation() {
+        const userChoice = document.getElementById('constellation-select').value;
+        const msg = document.getElementById('result-msg');
+        if (userChoice === lastClickedConst) {
+            msg.innerText = "Правильно! Це справді " + userChoice + ".";
+            msg.style.color = "#4caf50";
+        } else {
+            msg.innerText = "Ні, спробуй ще раз.";
+            msg.style.color = "#f44336";
+        }
+    }
+</script>
+</body>
+</html>

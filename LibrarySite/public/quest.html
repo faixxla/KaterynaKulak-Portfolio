@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <title>Inked ‒ System Error</title>
+    <link rel="stylesheet" href="styles/quest.css">
+</head>
+<body class="quest-page">
+    <div id="game-container" class="black-screen">
+        <button id="skip-btn">Skip Dialogue</button> 
+        <div id="slide-display"></div> <div id="dialog-wrapper" class="hidden">
+            <div class="name-tag"></div>
+            <div class="dialog-box">
+                <p id="typewriter-text"></p>
+                <span class="next-indicator">натисніть, щоб продовжити ▼</span>
+            </div>
+        </div>
+    </div>
+    <div id="corrector-game" class="hidden">
+        <div class="game-ui">
+            <div id="timer">Час: 20</div>
+            <div id="counter">Зловлено: 0/30</div>
+        </div>
+        <button id="retry-btn" class="hidden">Спробувати ще раз ↻</button>
+        <div class="chibi-container">
+            <div class="chibi-wrapper left">
+                <div id="bubble-left" class="speech-bubble hidden"></div>
+                <img id="chibi-first" src="images/quest/1/none.png" alt="Chibi 1">
+            </div>
+            <div class="chibi-wrapper right">
+                <div id="bubble-right" class="speech-bubble hidden"></div>
+                <img id="chibi-second" src="images/chibi_second_idle.png" alt="Chibi 2">
+            </div>
+        </div>
+        <div id="drop-zone"></div>
+    </div>
+    
+    <script src="scripts/quest.js"></script>
+</body>
+</html>

@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inked ‒ Мій Профіль</title>
+    <link rel="stylesheet" href="styles/profile.css">
+    <link rel="stylesheet" href="styles/general.css">
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+<body>
+
+    <header>
+        <a href="index.html" class="logo">INKED</a>
+        
+        <div id="react-search-root"></div>
+        
+        <details>
+            <summary data-key="menu_title">Menu</summary>
+            <nav>
+                <a href="catalog.html" data-key="nav_catalog">Catalog</a><br>
+                <a href="minigames.html" data-key="nav_minigames">Minigames</a><br>
+                <a href="profile.html" data-key="nav_profile">Profile</a>
+            </nav>
+        </details>
+    </header>
+
+    <main class="profile-container">
+    <section class="profile-header">
+        <div class="avatar-wrapper">
+            <img src="images/image1.jpg" alt="Аватар користувача" class="profile-avatar" id="user-avatar">
+        </div>
+        <div class="profile-bio">
+            <h2 id="user-name">Завантаження...</h2>
+            <p class="status" id="user-status">"Тут буде ваше біо"</p>
+            
+            <div class="ink-level">
+                <span>Рівень чорнила: </span>
+                <progress id="level-progress" value="0" max="100"></progress> 
+                <strong id="level-text">0%</strong>
+            </div>
+        </div>
+    </section>
+    <section class="user-wishlist">
+        <h3>Мій вішліст</h3>
+        <ul id="wishlist-items">
+            <li>Завантаження книг...</li>
+        </ul>
+    </section>
+    <section class="user-bookmarks">
+        <h3>Мої закладинки</h3>
+        <table class="bookmarks-table" id="bookmarks-table">
+            <thead>
+                <tr>
+                    <th>Книга (Посилання на розділ)</th>
+                    <th>Ваша замітка</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td colspan="2">Завантаження...</td></tr>
+            </tbody>
+        </table>
+    </section>
+    <hr>
+    
+    <div class="profile-content">
+        <section class="user-settings">
+            <h3>Налаштування</h3>
+            <form id="settings-form">
+                <fieldset>
+                    <legend>Персоналізація</legend>
+                    
+                    <label for="display-name">Змінити нікнейм:</label><br>
+                    <input type="text" id="display-name" name="username" placeholder="Нове ім'я"><br><br>
+
+                    <label for="birhday">Дата народження:</label><br>
+                    <input type="date" id="birhday" name="birhday"><br><br>
+
+                    <label for="bio-input">Про себе (макс. 100 симв.):</label><br>
+                    <textarea id="bio-input" name="bio" maxlength="100" placeholder="Коротко про вас..."></textarea><br><br>
+
+                    <label for="avatar-path">Шлях до аватара:</label><br>
+                    <input type="text" id="avatar-path" name="avatarpath" placeholder="images/my-photo.jpg"><br><br>
+                    
+                    <button type="submit" class="save-btn">Зберегти зміни</button>
+                </fieldset>
+            </form>
+            
+            <button id="logout-btn" class="logout-btn" style="margin-top: 20px; background: #8b0000; color: white; border: none; padding: 10px 20px; cursor: pointer;">Вийти з профілю</button>
+        </section>
+    </div>
+</main>
+
+    <footer>
+        <p>&copy; 2026 Inked. Твій відбиток у світі слів.</p>
+    </footer>
+<script src="scripts/search.js"></script>
+<script src="scripts/profile.js"></script>
+<script type="text/babel" src="scripts/search2.js"></script>
+</body>
+</html>

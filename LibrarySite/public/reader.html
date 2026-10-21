@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inked ‒ Reader</title>
+    <link rel="stylesheet" href="styles/reader.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.5/jszip.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/epubjs/dist/epub.min.js"></script>
+</head>
+<body>
+    <header>
+        <div class="header-info">
+            <h1>Name of the document.</h1>
+            <p class="author">Author's Name</p>
+        </div>
+        <div class="header-controls">
+            <div id="reading-timer" class="timer">00:00:00</div>
+            <a href="book-details.html"><button type="button" class="read-btn">Back</button></a>
+        </div>
+    </header>
+
+    <main id="reader-container">
+        <article class="book-page">
+            <div class="page-view">
+                <div id="viewer" style="width: 100%; height: 600px;"></div>
+            </div>
+
+            <nav class="reader-nav">
+                <a href="#">&lt;</a>
+                <button type="button" class="bookmark-btn">🔖</button>
+                <a href="#">&gt;</a>
+            </nav>
+        </article>
+
+        <aside class="comments-sidebar">
+            <div class="sidebar-header">
+                <button type="button" class="toggle-btn">&gt;</button>
+                <h3>Comments</h3>
+                <button type="button" class="add-btn">+</button>
+            </div>
+
+            <ol class="reviews-list">
+
+            </ol>
+
+            <hr>
+            <div class="zoom-control">
+                <label for="page-zoom">Масштаб сторінки:</label>
+                <input type="range" id="page-zoom" min="30" max="100" value="0">
+                <span id="zoom-value">0%</span>
+            </div>
+                <div class="bookmark-info">
+                    <p>Закладка на сторінці: <span class="badge">12</span></p>
+                </div>
+
+        </aside>
+    </main>
+    <script src="scripts/reader.js"></script>
+</body>
+</html>

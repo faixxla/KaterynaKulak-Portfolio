@@ -1,0 +1,434 @@
+@import url('https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;700&family=Playfair+Display:wght@700;800&display=swap');
+* { box-sizing: border-box; }
+body {
+    background-color: #e5e5da; /* Світло-бежевий фон */
+    margin: 0;
+    font-family: 'EB Garamond', serif;
+    color: #1a1a1a;
+}
+
+/* 2. Повторюємо стилі хедера для консистентності */
+header {
+    background-color: #ced1c1;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 40px;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+.logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 42px;
+    font-weight: 800;
+    text-decoration: none;
+    color: #000;
+    letter-spacing: -1px;
+}
+
+/* Пошукова панель як у Фігмі */
+.search-bar {
+    background-color: #000;
+    border-radius: 50px;
+    padding: 5px 5px 5px 20px;
+    display: flex;
+    align-items: center;
+    width: 500px;
+}
+
+.search-bar input {
+    background: transparent;
+    border: none !important;
+    color: #d5bfc1; /* Колір тексту як на макеті */
+    flex-grow: 1;
+    outline: none;
+    font-family: 'EB Garamond', serif;
+}
+
+.search-bar button {
+    background-color: #d5bfc1; /* Рожево-лавандовий акцент */
+    border: none;
+    border-radius: 40px;
+    padding: 8px 20px;
+    cursor: pointer;
+    font-family: 'EB Garamond', serif;
+    font-weight: bold;
+}
+
+/* Меню (details/summary) */
+header details {
+    position: relative;
+}
+
+header summary {
+    list-style: none;
+    background-color: #000;
+    color: #d5bfc1;
+    padding: 10px 30px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 18px;
+}
+
+header nav {
+    position: absolute;
+    right: 0;
+    background: #000;
+    padding: 20px;
+    border-radius: 0 0 10px 10px;
+    z-index: 100;
+}
+
+header nav a {
+    color: #d5bfc1;
+    text-decoration: none;
+    display: block;
+    margin-bottom: 10px;
+}
+body {
+    background-color: #d8d9ce; /* Твій фірмовий оливковий фон */
+    margin: 0;
+    font-family: 'EB Garamond', serif;
+    color: #1a1a1a;
+}
+
+/* 2. Контейнер профілю */
+.profile-container {
+    max-width: 900px;
+    margin: 40px auto;
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.2); /* Напівпрозорий фон для глибини */
+    border-radius: 15px;
+}
+
+/* 3. Шапка профілю (Аватар + Біо) */
+.profile-header {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+    margin-bottom: 30px;
+}
+
+.avatar-wrapper img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%; /* Робимо аватарку круглою */
+    object-fit: cover;
+    border: 4px solid #000;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+}
+
+.profile-bio h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 42px;
+    margin: 0 0 10px 0;
+}
+
+.status {
+    font-style: italic;
+    font-size: 20px;
+    color: #444;
+}
+
+/* 4. Стилізація прогрес-бару (Рівень чорнила) */
+.ink-level {
+    margin-top: 15px;
+}
+
+progress {
+    appearance: none;
+    width: 200px;
+    height: 12px;
+}
+
+progress::-webkit-progress-bar {
+    background-color: #ced1c1;
+    border-radius: 10px;
+}
+
+progress::-webkit-progress-value {
+    background-color: #000; /* Чорне чорнило */
+    border-radius: 10px;
+}
+
+/* 5. Таблиці (Читання та Wishlist) */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 40px;
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+th, td {
+    padding: 15px;
+    text-align: left;
+    border-bottom: 1px solid rgba(0,0,0,0.1);
+}
+
+th {
+    background-color: #000;
+    color: #d5bfc1;
+    font-family: 'Playfair Display', serif;
+}
+
+tr:hover {
+    background-color: rgba(213, 191, 193, 0.2);
+}
+
+/* 6. Досягнення (Badges) через Grid */
+.badges {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 20px;
+    margin-bottom: 40px;
+}
+
+.badge {
+    background-color: #000;
+    color: #d5bfc1;
+    padding: 20px 10px;
+    text-align: center;
+    border-radius: 12px;
+    font-weight: bold;
+    transition: transform 0.3s;
+    cursor: help;
+}
+
+.badge:hover {
+    transform: translateY(-5px);
+    background-color: #1a1a1a;
+}
+
+/* 7. Налаштування (Форма) */
+fieldset {
+    border: 2px solid #000;
+    border-radius: 10px;
+    padding: 20px;
+}
+
+legend {
+    font-family: 'Playfair Display', serif;
+    font-weight: bold;
+    padding: 0 10px;
+}
+
+.save-btn {
+    background-color: #d5bfc1;
+    border: none;
+    padding: 12px 30px;
+    border-radius: 5px;
+    font-family: 'EB Garamond', serif;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 20px;
+    transition: background 0.3s;
+}
+
+.save-btn:hover {
+    background-color: #c4a8aa;
+}
+@media (max-width: 1024px) {
+    main {
+        padding: 20px; /* Зменшуємо "повітря" по боках */
+    }
+    h1 {
+        font-size: 48px; /* Робимо заголовок трохи меншим */
+    }
+    .search-bar {
+        width: 80%; /* Пошук тепер займає більше місця по ширині */
+    }
+}
+@media (max-width: 768px) {
+    /* Зміна розміщення: все стає в одну колонку */
+    header {
+        padding: 8px 15px; /* Мінімум відступів */
+        flex-wrap: wrap;   /* Дозволяємо елементам перестрибувати, якщо зовсім тісно */
+        justify-content: space-between;
+    }
+
+    .logo {
+        font-size: 24px;   /* Значно менше, щоб звільнити місце */
+        letter-spacing: -1px;
+    }
+
+    /* Пошук на мобілці робимо гнучким */
+    .search-bar {
+        width: 100%;       /* На дуже вузьких екранах пошук може стати під логотипом */
+        order: 3;          /* Переносимо його нижче лого і меню, якщо вони не влізають */
+        margin-top: 10px;
+        width: 100%;
+        padding: 4px 4px 4px 15px;
+    }
+
+    .search-bar button {
+        padding: 6px 15px;
+        font-size: 14px;
+    }
+
+    header summary {
+        padding: 6px 15px;
+        font-size: 14px;
+    }
+    .content-grid, .layout-wrapper, #reader-container {
+        flex-direction: column !important;
+    }
+
+    /* Зміна розміру та розміщення рисунків */
+    .book-aside, .comments-sidebar {
+        width: 100% !important; /* Бокові панелі тепер на весь екран */
+        border-left: none;
+        border-top: 2px solid #000;
+        margin-top: 20px;
+    }
+
+    .main-cover, .page-view img {
+        width: 100%; /* Картинка підлаштовується під ширину телефону */
+        height: auto;
+    }
+
+    /* Зміна тексту */
+    h1 {
+        font-size: 32px;
+        text-align: center;
+    }
+    
+    .logo {
+        font-size: 28px;
+    }
+    
+    /* 1. Центруємо шапку профілю */
+    .profile-header {
+        flex-direction: column; /* Ставимо аватар над текстом */
+        text-align: center;
+        gap: 20px;
+    }
+
+    .avatar-wrapper img {
+        width: 120px; /* Трохи зменшуємо для мобілки */
+        height: 120px;
+    }
+
+    .profile-bio h2 {
+        font-size: 32px;
+    }
+
+    .status {
+        font-size: 16px;
+    }
+
+    /* 2. Контейнер профілю на весь екран */
+    .profile-container {
+        margin: 10px;
+        padding: 15px;
+        border-radius: 10px;
+        width: calc(100% - 20px);
+    }
+
+    .reading-table thead, 
+    .wishlist-table thead {
+        display: none;
+    }
+
+    /* 2. Змушуємо таблицю та її елементи стати видимими блоками */
+    .reading-table, 
+    .wishlist-table,
+    .reading-table tbody, 
+    .wishlist-table tbody,
+    .reading-table tr, 
+    .wishlist-table tr,
+    .reading-table td, 
+    .wishlist-table td {
+        display: block; /* Це повертає їх на екран і ставить один під одним */
+        width: 100%;
+    }
+
+    /* 3. Оформлюємо кожну "картку" книги */
+    .reading-table tr, 
+    .wishlist-table tr {
+        background: rgba(255, 255, 255, 0.4);
+        margin-bottom: 20px;
+        padding: 15px;
+        border-radius: 12px;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    }
+
+    .reading-table td, 
+    .wishlist-table td {
+        padding: 8px 0;
+        border: none;
+        text-align: center;
+    }
+
+    /* Робимо назву книги акцентною */
+    .reading-table td:first-child, 
+    .wishlist-table td:first-child {
+        font-weight: bold;
+        font-size: 20px;
+        color: #000;
+        border-bottom: 1px solid rgba(0,0,0,0.1);
+        margin-bottom: 10px;
+        padding-bottom: 10px;
+    }
+
+    .reading-table tr, .wishlist-table tr {
+        display: block;
+        background: rgba(255, 255, 255, 0.4);
+        margin-bottom: 15px;
+        padding: 10px;
+        border-radius: 8px;
+    }
+
+    .reading-table td, .wishlist-table td {
+        display: block;
+        width: 100%;
+        padding: 5px 0;
+        border: none;
+        text-align: center;
+    }
+
+    /* Виділяємо назву книги в "картці" */
+    .reading-table td:first-child, 
+    .wishlist-table td:first-child {
+        font-weight: bold;
+        font-size: 18px;
+        color: #000;
+    }
+
+    /* 4. Досягнення (Badges) */
+    .badges {
+        grid-template-columns: 1fr 1fr; /* Робимо по два в ряд */
+        gap: 10px;
+    }
+
+    .badge {
+        padding: 15px 5px;
+        font-size: 14px;
+    }
+
+    /* 5. Форма налаштувань */
+    fieldset {
+        padding: 15px;
+    }
+
+    .save-btn {
+        width: 100%; /* Кнопка на всю ширину, щоб зручно було тиснути пальцем */
+        padding: 15px;
+    }
+
+    /* 6. Прогрес-бар */
+    progress {
+        width: 100%; /* Розтягуємо на всю доступну ширину */
+    }
+}
+
+/* Специфічно для твого високого екрана */
+@media (max-height: 900px) and (orientation: portrait) {
+    .profile-container {
+        min-height: 80dvh; /* Гарантуємо, що профіль займає більшу частину екрана */
+    }
+}

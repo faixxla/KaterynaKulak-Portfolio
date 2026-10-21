@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inked ‒ Book Details</title>
+    <link rel="stylesheet" href="styles/book-details.css">
+    <link rel="stylesheet" href="styles/general.css">
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+<body>
+
+    <header>
+        <a href="index.html" class="logo">INKED</a>
+        
+        <div id="react-search-root"></div>
+        
+        <details>
+            <summary data-key="menu_title">Menu</summary>
+            <nav>
+                <a href="catalog.html" data-key="nav_catalog">Catalog</a><br>
+                <a href="minigames.html" data-key="nav_minigames">Minigames</a><br>
+                <a href="profile.html" data-key="nav_profile">Profile</a>
+            </nav>
+        </details>
+    </header>
+
+    <main>
+        <section class="book-header">
+            <div class="title-meta">
+                <h1>Name of the document.</h1>
+                <p class="author">Author's Name</p>
+            </div>
+            <a href="reader.html"><button type="button" class="read-btn">Read</button></a>
+        </section>
+
+        <div class="content-grid">
+            <aside class="book-aside">
+                <div class="cover-container">
+                    <img src="images/cover0.jpg" width="310" height="450" alt="Обкладинка книги" class="main-cover">
+                    <div class="favorite-star">★</div>
+                </div>
+
+                <div class="category-block">
+                    <h4>Category:</h4>
+                    <ul class="genre-tags">
+                        <li>Genre 1</li>
+                        <li>Genre 2</li>
+                        <li>Genre 3</li>
+                        <li>Genre 4</li>
+                    </ul>
+                </div>
+            </aside>
+
+            <article class="book-description">
+                <h3>Book's description:</h3>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer congue arcu at lectus vestibulum facilisis. Ut ac dui a magna fermentum rhoncus. Vestibulum et dignissim quam. Praesent cursus consectetur condimentum. Maecenas id euismod turpis. In placerat tellus quis rhoncus placerat. Interdum et malesuada fames ac ante ipsum primis in faucibus. Nulla facilisi. Sed nec dictum massa. Duis aliquam vitae mi vitae scelerisque. Quisque dignissim ipsum quis massa aliquam finibus.</p>
+                <br>
+                <br>
+                <br>
+                <hr>
+
+                <table class="book-stats">
+                    <tr>
+                        <th>Year of publication:</th>
+                        <th>Language:</th>
+                        <th>Number of pages:</th>
+                    </tr>
+                    <tr>
+                        <td><span class="badge">2007</span></td>
+                        <td><span class="badge">English</span></td>
+                        <td><span class="badge">208</span></td>
+                    </tr>
+                </table>
+            </article>
+        </div>
+        <div class="author-wrap">
+        <img src="images/quill-pen.png" alt="Перо" class="wrap-image">
+        <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris sed mollis mauris. Duis sed enim dictum, cursus tellus vel, molestie dolor. Vestibulum eu eros ipsum. In auctor lectus nec leo consectetur, ac fermentum odio vehicula. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Donec hendrerit fringilla est. Nulla gravida semper odio sit amet blandit. Nulla eu pellentesque ex. Donec felis ante, rhoncus quis dignissim a, porttitor vitae nulla. Nulla eget tellus eleifend, ultrices tortor et, lacinia justo. Nulla malesuada diam at accumsan accumsan. Nam enim dolor, sodales ut tristique ut, hendrerit sit amet leo. Vivamus gravida sodales lectus, ut vulputate velit faucibus id.
+
+Phasellus non justo rutrum, blandit quam vel, commodo enim. Duis eu quam purus. Curabitur a convallis urna. Sed vitae quam non eros malesuada vulputate. Etiam nec metus nisl. Quisque rhoncus luctus nulla et sodales. Nullam in bibendum dolor, a pulvinar sem. Mauris rhoncus efficitur venenatis. Praesent tristique euismod tincidunt. Morbi mauris quam, sodales vel justo dignissim, condimentum ullamcorper neque.
+        </p>
+    </div>
+    <section class="interactive-layout">
+        <section class="video-reviews">
+                    <h3>Video Review</h3>
+                    <iframe width="560" height="315" 
+                        src="https://www.youtube-nocookie.com/embed/ltVam6Yig9k?modestbranding=1&rel=0&iv_load_policy=3&fs=0&color=white" 
+                        title="YouTube video player" 
+                        frameborder="0" 
+                        allowfullscreen>
+                    </iframe >
+        </section>
+        <section class="ink-calculator">
+    <div class="calc-header">
+        <img src="images/eye-icon.png" alt="Eye" class="calc-icon">
+        <h3>Chronometry of Reading</h3>
+    </div>
+    
+    <div class="calc-body">
+        <p class="calc-hint">Система проаналізувала сторінки. Налаштуйте свій темп:</p>
+        
+        <form id="reading-calc">
+            <div class="calc-group">
+                <label>Ваш режим дня:</label>
+                <div class="mood-options">
+                    <input type="radio" name="mood" id="leisurely" checked>
+                    <label for="leisurely">Непоспіхом</label>
+                    
+                    <input type="radio" name="mood" id="focused">
+                    <label for="focused">Сконцентровано</label>
+                    
+                    <input type="radio" name="mood" id="rushing">
+                    <label for="rushing">На тяп-ляп</label>
+                </div>
+            </div>
+
+            <div class="calc-group">
+                <label>Хвилин на одну сторінку:</label>
+                <input type="range" min="1" max="10" step="0.5" value="2" class="devotion-slider">
+                <div class="slider-labels">
+                    <span>Спринт (1 хв)</span>
+                    <span>Вдумливо (10 хв)</span>
+                </div>
+            </div>
+
+            <div class="calc-result">
+                <span>Прогноз завершення:</span>
+                <strong id="time-prediction">-- days</strong>
+            </div>
+        </form>
+    </div>
+</section>
+    </section>
+        <section class="reviews">
+            <div class="reviews-top">
+                <h2>Reviews</h2>
+                <p>you can leave a review only if you are logged in</p>
+            </div>
+            <button class="leave-review">Leave review</button>
+            
+            <ol class="reviews-list">
+
+            </ol>
+        </section>
+    </main>
+
+    <!-- <footer>
+        <p>&copy; 2026 Inked Library. Всі права захищені.</p>
+    </footer> -->
+    
+<script src="scripts/book-details.js"></script>
+<script src="scripts/search.js"></script>
+<script type="text/babel" src="scripts/search2.js"></script>
+</body>
+</html>

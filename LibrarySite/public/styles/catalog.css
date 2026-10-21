@@ -1,0 +1,502 @@
+/* 1. Імпорт шрифтів */
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500&family=EB+Garamond:wght@400;700&family=Playfair+Display:ital,wght@0,700;0,800;1,700&display=swap');
+
+* { 
+    box-sizing: border-box; 
+    transition: all 0.3s ease; /* Плавність для всіх змін (hover тощо) */
+}
+
+body {
+    background-color: #e5e5da; 
+    margin: 0;
+    font-family: 'EB Garamond', serif;
+    color: #1a1a1a;
+    line-height: 1.6;
+}
+
+/* 2. Header (Sticky & Glassmorphism) */
+header {
+    background-color: rgba(206, 209, 193, 0.95); /* Напівпрозорість */
+    backdrop-filter: blur(5px); /* Ефект розмиття фону */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 60px;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    border-bottom: 1px solid rgba(0,0,0,0.1);
+}
+
+.logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 38px;
+    font-weight: 800;
+    text-decoration: none;
+    color: #000;
+    letter-spacing: -1.5px;
+}
+
+.search-bar {
+    background-color: #000;
+    border-radius: 50px;
+    padding: 4px 4px 4px 20px;
+    display: flex;
+    align-items: center;
+    width: 450px;
+    border: 1px solid transparent;
+}
+
+.search-bar:focus-within {
+    border-color: #d5bfc1;
+    box-shadow: 0 0 15px rgba(213, 191, 193, 0.3);
+}
+
+.search-bar input {
+    background: transparent;
+    border: none !important;
+    color: #d5bfc1;
+    flex-grow: 1;
+    outline: none;
+    font-family: 'EB Garamond', serif;
+    font-size: 16px;
+}
+
+.search-bar button {
+    background-color: #d5bfc1;
+    border: none;
+    border-radius: 40px;
+    padding: 8px 22px;
+    cursor: pointer;
+    font-family: 'EB Garamond', serif;
+    font-weight: bold;
+    color: #000;
+}
+
+.search-bar button:hover {
+    background-color: #c4a8aa;
+    transform: scale(1.02);
+}
+
+/* Меню */
+header summary {
+    list-style: none;
+    background-color: #000;
+    color: #d5bfc1;
+    padding: 8px 25px;
+    border-radius: 30px; /* Більш закруглене */
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+header nav {
+    position: absolute;
+    right: 0;
+    top: 120%;
+    background: #000;
+    padding: 15px;
+    border-radius: 12px;
+    min-width: 150px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+}
+
+header nav a {
+    color: #d5bfc1;
+    text-decoration: none;
+    display: block;
+    padding: 8px 10px;
+    border-radius: 6px;
+}
+
+header nav a:hover {
+    background: rgba(213, 191, 193, 0.1);
+    color: #fff;
+}
+/* 3. Головний макет (Sidebar + Content) */
+.layout-wrapper {
+    display: flex;
+    min-height: calc(100vh - 70px); /* Висота екрана мінус хедер */
+}
+
+/* Бокова панель */
+.sidebar {
+    width: 250px;
+    background-color: #b4a9a9; /* Попелясто-рожевий/сірий з макету */
+    padding: 30px;
+    border-right: 1px solid rgba(0,0,0,0.1);
+}
+
+.sidebar h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 28px;
+    margin-bottom: 5px;
+}
+.mobile-filter-btn {
+    display: none;
+}
+.sidebar hr {
+    border: none;
+    height: 6px;
+    background-color: #000;
+    margin: 10px 0 30px 0;
+}
+
+/* Кнопки в сайдбарі */
+.sidebar button {
+    width: 100%;
+    background-color: #e2e4d9;
+    border: none;
+    padding: 12px;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    font-family: 'EB Garamond', serif;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.sidebar button:hover {
+    background-color: #d5bfc1;
+}
+
+/* Список категорій */
+.categories h3 {
+    font-size: 20px;
+    margin-top: 30px;
+}
+
+.categories ul {
+    list-style: none;
+    padding: 0;
+}
+
+.categories li {
+    margin-bottom: 12px;
+}
+
+.categories a {
+    text-decoration: none;
+    color: #1a1a1a;
+    font-size: 18px;
+    transition: color 0.3s;
+}
+
+.categories a:hover {
+    color: #fff; /* Білий колір при наведенні для контрасту */
+}
+
+/* 4. Сітка книг (Таблиця) */
+.catalog-content {
+    flex: 1;
+    padding: 40px;
+}
+
+table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 40px; /* Відступи між книгами */
+}
+
+td {
+    vertical-align: top;
+    text-align: center;
+    width: 33%; /* Три книги в ряд */
+}
+
+.catalog-content figure {
+    margin: 0;
+    transition: transform 0.3s;
+}
+
+.catalog-content figure:hover {
+    transform: translateY(-10px);
+}
+
+.catalog-content img {
+    width: 180px; /* Збільшимо трохи для читабельності */
+    height: 250px;
+    object-fit: cover;
+    border-radius: 4px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+}
+
+.catalog-content figcaption {
+    margin-top: 15px;
+    font-weight: bold;
+    font-size: 18px;
+    background-color: #000; /* Чорна плашка під назвою як на макеті */
+    color: #fff;
+    padding: 5px;
+}
+
+.catalog-content a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.glitch-btn {
+    width: 100%;
+    background: #000;
+    color: #d5bfc1;
+    border: 2px solid #d5bfc1;
+    padding: 15px;
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+    font-weight: 800;
+    text-transform: uppercase;
+    position: relative;
+    cursor: pointer;
+    overflow: hidden;
+}
+
+.glitch-btn::before, .glitch-btn::after {
+    content: attr(data-text);
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: #000;
+}
+
+.glitch-btn::before {
+    left: 2px;
+    text-shadow: -2px 0 #ff00c1;
+    clip: rect(44px, 450px, 56px, 0);
+    animation: glitch-anim 5s infinite linear alternate-reverse;
+}
+
+.glitch-btn::after {
+    left: -2px;
+    text-shadow: -2px 0 #00fff9, 2px 2px #ff00c1;
+    animation: glitch-anim2 1s infinite linear alternate-reverse;
+}
+
+@keyframes glitch-anim {
+    0% { clip: rect(31px, 9999px, 94px, 0); transform: skew(0.85deg); }
+    10% { clip: rect(62px, 9999px, 42px, 0); transform: skew(0.1deg); }
+    /* Додай більше проміжних значень для хаосу */
+    100% { clip: rect(89px, 9999px, 98px, 0); transform: skew(0.2deg); }
+}
+
+@keyframes glitch-anim2 {
+    0% { clip: rect(10px, 9999px, 85px, 0); transform: skew(0.5deg); }
+    100% { clip: rect(70px, 9999px, 15px, 0); transform: skew(-0.5deg); }
+}
+
+
+
+/* Додаємо цей клас до body через JS */
+.minor-glitch {
+    animation: shake 0.2s infinite;
+}
+
+@keyframes shake {
+    0% { transform: translate(1px, 1px) rotate(0deg); }
+    20% { transform: translate(-1px, -2px) rotate(-1deg); }
+    40% { transform: translate(-3px, 0px) rotate(1deg); }
+    60% { transform: translate(3px, 2px) rotate(0deg); }
+    80% { transform: translate(1px, -1px) rotate(1deg); }
+    100% { transform: translate(-1px, 2px) rotate(-1deg); }
+}
+
+.major-glitch {
+    filter: contrast(180%) brightness(120%) hue-rotate(180deg);
+    animation: major-distort 0.15s infinite;
+    pointer-events: none; /* Користувач більше не може нікуди клікати */
+}
+
+@keyframes major-distort {
+    0% { transform: skew(2deg) scale(1.02); filter: invert(0); }
+    25% { transform: skew(-5deg) scale(0.98); filter: invert(0.2); }
+    50% { transform: skew(10deg) scale(1.05); color: #ff00c1; }
+    75% { transform: skew(-15deg) scale(0.9); filter: contrast(300%); }
+    100% { transform: skew(5deg) scale(1.1); filter: hue-rotate(360deg); }
+}
+
+/* Ефект "смужок" на екрані, як у старому телевізорі */
+.major-glitch::after {
+    content: "";
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: repeating-linear-gradient(
+        0deg,
+        rgba(0, 0, 0, 0.1) 0px,
+        rgba(0, 0, 0, 0.1) 1px,
+        transparent 1px,
+        transparent 2px
+    );
+    pointer-events: none;
+    z-index: 9999;
+}
+#blackout {
+    position: fixed; /* Завжди відносно вікна браузера */
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #000 !important; /* Форсуємо чорний колір */
+    opacity: 0;
+    pointer-events: none;
+    z-index: 999999; /* Максимальне число, щоб бути над усім */
+    transition: opacity 1.5s ease-in;
+}
+
+#blackout.active {
+    opacity: 1;
+    pointer-events: all;
+}
+
+
+@media (max-width: 1024px) {
+    main {
+        padding: 20px; /* Зменшуємо "повітря" по боках */
+    }
+    h1 {
+        font-size: 48px; /* Робимо заголовок трохи меншим */
+    }
+    .search-bar {
+        width: 80%; /* Пошук тепер займає більше місця по ширині */
+    }
+}
+@media (max-width: 480px) {
+
+    .sidebar {
+        display: none !important; 
+        width: 100% !important;
+        background-color: #b4a9a9 !important;
+        border-right: none !important;
+        position: relative !important;
+    }
+
+    /* 2. Стилізуємо кнопку (label) */
+    .mobile-filter-btn {
+        display: block !important;
+        background-color: #000;
+        color: #d5bfc1;
+        padding: 15px;
+        text-align: center;
+        width: 100%;
+        font-family: 'Playfair Display', serif;
+        font-weight: bold;
+        cursor: pointer;
+        border-bottom: 2px solid #d5bfc1;
+        z-index: 1001; /* Щоб була поверх усього */
+    }
+
+    /* 3. ГОЛОВНА МАГІЯ: Показуємо сайдбар, коли чекбокс активний */
+    #sidebar-toggle:checked ~ .sidebar {
+        display: block !important;
+    }
+
+    /* 4. Візуальна зміна кнопки, коли меню відкрите */
+    #sidebar-toggle:checked ~ .mobile-filter-btn {
+        background-color: #d5bfc1 !important;
+        color: #000 !important;
+    }
+
+    /* 1. Враховуємо системні панелі браузера */
+    body {
+        min-height: 100dvh; /* Динамічна висота: враховує появу/зникнення адресного рядка */
+    }
+
+    /* 2. Компактна шапка (Header) */
+    header {
+        padding: 8px 15px; /* Мінімум відступів */
+        flex-wrap: wrap;   /* Дозволяємо елементам перестрибувати, якщо зовсім тісно */
+        justify-content: space-between;
+    }
+
+    .logo {
+        font-size: 24px;   /* Значно менше, щоб звільнити місце */
+        letter-spacing: -1px;
+    }
+
+    /* Пошук на мобілці робимо гнучким */
+    .search-bar {
+        width: 100%;       /* На дуже вузьких екранах пошук може стати під логотипом */
+        order: 3;          /* Переносимо його нижче лого і меню, якщо вони не влізають */
+        margin-top: 10px;
+        width: 100%;
+        padding: 4px 4px 4px 15px;
+    }
+
+    .search-bar button {
+        padding: 6px 15px;
+        font-size: 14px;
+    }
+
+    header summary {
+        padding: 6px 15px;
+        font-size: 14px;
+    }
+
+    /* 3. Головний заголовок та інтро */
+    main {
+        padding: 30px 15px;
+    }
+
+    /* Додаємо відступ знизу, щоб "системна смужка" не перекривала контент */
+    footer {
+        padding-bottom: env(safe-area-inset-bottom, 20px);
+    }
+    .layout-wrapper {
+        flex-direction: column;
+    }
+
+    /* 2. Сайдбар тепер зверху, а не збоку */
+    .sidebar {
+        width: 100%;
+        border-right: none;
+        border-bottom: 1px solid rgba(0,0,0,0.1);
+        padding: 20px;
+    }
+
+    .sidebar h2 {
+        font-size: 24px;
+        text-align: center;
+    }
+
+    .sidebar hr {
+        margin: 10px auto 20px auto;
+        width: 50%; /* Робимо лінію коротшою і по центру */
+    }
+
+    /* 3. Магія для таблиці: перетворюємо її на гнучку сітку */
+    .catalog-content {
+        padding: 20px 10px;
+    }
+
+    table, tbody, tr, td {
+        display: block; /* Змушуємо таблицю ігнорувати свою структуру */
+        width: 100% !important;
+    }
+
+    table {
+        border-spacing: 0;
+    }
+
+    td {
+        margin-bottom: 40px; /* Відступ між книгами в списку */
+        padding: 0 !important;
+    }
+
+    /* 4. Збільшуємо обкладинки, щоб вони займали більше місця */
+    .catalog-content img {
+        width: 70%; /* Книга виглядає солідно на екрані */
+        height: auto;
+        max-width: 250px;
+    }
+
+    .catalog-content figcaption {
+        width: 70%;
+        margin: 15px auto 0 auto;
+        font-size: 16px;
+    }
+
+    /* 5. Кнопки в сайдбарі */
+    .sidebar button {
+        padding: 10px;
+        font-size: 14px;
+    }
+}
