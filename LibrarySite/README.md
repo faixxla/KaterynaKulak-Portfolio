@@ -12,7 +12,7 @@
 
 | React Live Search | Chalkboard Canvas |
 | :---: | :---: |
-| ![Live Search](docs/live_search.gif) | ![Canvas Board](docs/canvas_board.jpg) |
+| ![Live Search](docs/live_search.gif) | ![Canvas Board](docs/board.gif) |
 
 *(Replace the image links above with paths to screenshots saved in your repository, e.g., `docs/`)*
 
