@@ -47,18 +47,3 @@
 * **Backend:** Node.js, Express.js.
 * **Database:** PostgreSQL (User profiles, session state, book catalog).
 * **Tools & Deployment:** `pgAdmin 4`, `ngrok` (tunnelling for local testing), Docker-compatible structure.
-
----
-
-## 🚀 Getting Started
-
-### Prerequisites
-* Node.js (v18 or higher)
-* PostgreSQL database
-
-### Installation
-
-1. **Clone the repository:**
-   ```bash
-   git clone [https://github.com/your-username/inked.git](https://github.com/your-username/inked.git)
-   cd inked
